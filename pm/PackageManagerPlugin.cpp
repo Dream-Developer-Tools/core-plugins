@@ -1,29 +1,20 @@
 #include "PackageManagerPlugin.h"
 #include <memory>
-#include <iostream>
-#include <utility>
 
-int PackageManagerPlugin::runCommand(const std::string& pluginCalled, int argc, char **argv) {
+ReturnData runCommand(const std::string& pluginCalled, int argc, char **argv) {
     if (pluginCalled == "pm")
     {
         std::string command = argv[0];
         if (command == "version" || command == "v")
         {
-            std::cout << "Version: " << "AAAAAA" << std::endl;
-            return 0;
-        }
-        else
-        {
-            std::cout << "Unknown command" << std::endl;
-            return 1;
+            return ReturnData{VERSION, SUCCESS};
         }
     }
 
-
-
-    return 0;
+    return ReturnData{"UC", UNKNOWN_COMMAND};
 }
 
-extern "C" Plugin* createPlugin(const std::function<void*()>& callback, const std::string& uuid, std::string pluginStack) {
-    return new PackageManagerPlugin(callback, uuid, std::move(pluginStack));
+extern "C" int createPlugin(const CORE_CALLBACK& callback, const std::string& uuid, const std::string& pluginStack) {
+    PackageManagerPlugin = new PluginAPI::Plugin(callback, uuid, "Package Manager", VERSION, pluginStack);
+    return 0;
 }

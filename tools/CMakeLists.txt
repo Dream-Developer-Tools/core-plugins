@@ -1,7 +1,6 @@
-project(pm)
+project(tools)
 
-
-add_library(${PROJECT_NAME} SHARED PackageManagerPlugin.cpp PackageManagerPlugin.h)
+add_library(${PROJECT_NAME} SHARED ToolsPlugin.cpp ToolsPlugin.h)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/plugin)
 
 # copy the so to ROOT_BUILD_DIR/app/plugins

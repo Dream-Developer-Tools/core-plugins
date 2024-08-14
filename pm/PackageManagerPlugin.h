@@ -1,17 +1,17 @@
 #ifndef DDT_PACKAGEMANAGERPLUGIN_H
 #define DDT_PACKAGEMANAGERPLUGIN_H
 
-#include <plugin.h>
+#include <Plugin.h>
 
+#define VERSION "0.1.0"
 
-class PackageManagerPlugin : public Plugin
+inline const PluginAPI::Plugin* PackageManagerPlugin = nullptr;
+
+extern "C" ReturnData runCommand(const std::string& pluginCalled, int argc, char** argv);
+
+inline void registerPlugin()
 {
-public:
-    PackageManagerPlugin(const std::function<void*()>& callback, const std::string& uuid, std::string pluginStack) : Plugin(callback, uuid, pluginStack) {}
-    int runCommand(const std::string& pluginCalled, int argc, char** argv) final;
-    void registerPlugin() final {}
-    std::string name = "Package Manager";
-};
+}
 
 
 #endif
