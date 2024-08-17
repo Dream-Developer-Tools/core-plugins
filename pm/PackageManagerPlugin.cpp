@@ -1,5 +1,4 @@
 #include "PackageManagerPlugin.h"
-#include <memory>
 
 ReturnData runCommand(const std::string& pluginCalled, int argc, char **argv) {
     if (pluginCalled == "pm")
